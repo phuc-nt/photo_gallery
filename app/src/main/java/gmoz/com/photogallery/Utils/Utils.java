@@ -1,4 +1,4 @@
-package gmoz.com.photogallery;
+package gmoz.com.photogallery.Utils;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;

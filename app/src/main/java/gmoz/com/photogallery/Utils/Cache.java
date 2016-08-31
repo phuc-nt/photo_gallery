@@ -1,4 +1,4 @@
-package gmoz.com.photogallery;
+package gmoz.com.photogallery.Utils;
 
 import org.json.JSONArray;
 
@@ -10,5 +10,7 @@ import java.util.List;
 public class Cache {
     public static JSONArray photos;
     public static List<String> names;
-    public static List<String> avatarUrls;
+    public static List<String> profileUrls;
+
+    public static List<String> fullImageUrls;
 }

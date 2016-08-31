@@ -1,4 +1,4 @@
-package gmoz.com.photogallery;
+package gmoz.com.photogallery.Service;
 
 import android.content.Context;
 import android.util.Log;
@@ -7,13 +7,16 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
+
+import gmoz.com.photogallery.Activity.MainActivity;
+import gmoz.com.photogallery.Utils.Constants;
+import gmoz.com.photogallery.Utils.Utils;
 
 /**
  * Created by PhucNT on 16/August/31.

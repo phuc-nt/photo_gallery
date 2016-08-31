@@ -1,4 +1,4 @@
-package gmoz.com.photogallery;
+package gmoz.com.photogallery.Utils;
 
 /**
  * Created by PhucNT on 16/August/31.
