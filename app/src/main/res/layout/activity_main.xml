@@ -9,9 +9,10 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="gmoz.com.photogallery.MainActivity">
 
-    <TextView
-        android:id="@+id/result"
+    <ListView
+        android:id="@+id/image_list"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="" />
+        android:layout_height="wrap_content" >
+
+    </ListView>
 </RelativeLayout>

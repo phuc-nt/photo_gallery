@@ -4,22 +4,26 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
-import android.widget.TextView;
+import android.widget.ListView;
 import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class MainActivity extends AppCompatActivity {
-    private TextView resultTv;
+    private ListView listImageView;
+    private ListAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        resultTv = (TextView) findViewById(R.id.result);
+        listImageView = (ListView) findViewById(R.id.image_list);
 
         MainService service = new MainService();
         service.getPhotos(this, this);
@@ -32,6 +36,9 @@ public class MainActivity extends AppCompatActivity {
      * @param response Server response
      */
     public void onGetPhotosResult(String response) {
+        List<String> names = new ArrayList<>();
+        List<String> profileUrls = new ArrayList<>();
+        List<String> photoUrls = new ArrayList<>();
 
         //watingDialog.dismiss(); // stop "waiting dialog"
 
@@ -44,11 +51,17 @@ public class MainActivity extends AppCompatActivity {
 
                 for (int i = 0; i < photos.length(); i++) {
                     JSONObject json = photos.getJSONObject(i);
-                    String photoUrl = json.getJSONObject("urls").getString("small");
-                    resultTv.append('\n' + photoUrl + '\n');
+                    String name = json.getJSONObject("user").getString("name");
+                    names.add(name);
+                    String profileUrl = json.getJSONObject("user").getJSONObject("profile_image").getString("small");
+                    profileUrls.add(profileUrl);
+                    String photoUrl = json.getJSONObject("urls").getString("thumb");
+                    photoUrls.add(photoUrl);
+
+                    adapter = new ListAdapter(this, names, profileUrls, photoUrls);
+                    listImageView.setAdapter(adapter);
                 }
-                //resultTv.setText(photos.toString());
-                refreshListView();
+                //refreshListView();
 
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -62,7 +75,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void refreshListView() {
-//        adapter = new ShipmentListAdapter(getActivity(), Cache.shipments);
-//        listView.setAdapter(adapter);
+//        adapter = new ListAdapter(this, Cache.names, Cache.avatarUrls, photoUrls);
+//        listImageView.setAdapter(adapter);
     }
 }
